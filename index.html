@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>فرم اطلاعات کاربر</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    body { font-family: 'Vazir', sans-serif; }
+    .hidden { display: none; }
+    .searchable-select { position: relative; }
+    .searchable-select input { width: 100%; padding: 0.5rem; }
+    .searchable-select ul { max-height: 200px; overflow-y: auto; }
+  </style>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+  <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+    <h1 class="text-2xl font-bold text-center text-blue-600 mb-6">فرم اطلاعات</h1>
+    
+    <!-- صفحه 1: نام و نام خانوادگی -->
+    <div id="page1" class="page">
+      <label class="block text-gray-700 mb-2">نام و نام خانوادگی</label>
+      <input type="text" id="fullName" class="w-full p-2 border rounded" required>
+      <div class="flex justify-between mt-4">
+        <button onclick="nextPage(1)" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">بعدی</button>
+      </div>
+    </div>
+
+    <!-- صفحه 2: شماره تلفن -->
+    <div id="page2" class="page hidden">
+      <label class="block text-gray-700 mb-2">شماره تلفن</label>
+      <input type="tel" id="phone" class="w-full p-2 border rounded" pattern="[0-9]{11}" required>
+      <div class="flex justify-between mt-4">
+        <button onclick="prevPage(2)" class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600">قبلی</button>
+        <button onclick="nextPage(2)" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">بعدی</button>
+      </div>
+    </div>
+
+    <!-- صفحه 3: استان -->
+    <div id="page3" class="page hidden">
+      <label class="block text-gray-700 mb-2">ساکن چه استانی هستید؟</label>
+      <select id="province" class="w-full p-2 border rounded" required>
+        <option value="">انتخاب کنید</option>
+        <option value="آذربایجان شرقی">آذربایجان شرقی</option>
+        <option value="آذربایجان غربی">آذربایجان غربی</option>
+        <option value="اردبیل">اردبیل</option>
+        <option value="اصفهان">اصفهان</option>
+        <option value="البرز">البرز</option>
+        <option value="ایلام">ایلام</option>
+        <option value="بوشهر">بوشهر</option>
+        <option value="تهران">تهران</option>
+        <option value="چهارمحال و بختیاری">چهارمحال و بختیاری</option>
+        <option value="خراسان جنوبی">خراسان جنوبی</option>
+        <option value="خراسان رضوی">خراسان رضوی</option>
+        <option value="خراسان شمالی">خراسان شمالی</option>
+        <option value="خوزستان">خوزستان</option>
+        <option value="زنجان">زنجان</option>
+        <option value="سمنان">سمنان</option>
+        <option value="سیستان و بلوچستان">سیستان و بلوچستان</option>
+        <option value="فارس">فارس</option>
+        <option value="قزوین">قزوین</option>
+        <option value="قم">قم</option>
+        <option value="کردستان">کردستان</option>
+        <option value="کرمان">کرمان</option>
+        <option value="کرمانشاه">کرمانشاه</option>
+        <option value="کهگیلویه و بویراحمد">کهگیلویه و بویراحمد</option>
+        <option value="گلستان">گلستان</option>
+        <option value="گیلان">گیلان</option>
+        <option value="لرستان">لرستان</option>
+        <option value="مازندران">مازندران</option>
+        <option value="مرکزی">مرکزی</option>
+        <option value="هرمزگان">هرمزگان</option>
+        <option value="همدان">همدان</option>
+        <option value="یزد">یزد</option>
+      </select>
+      <div class="flex justify-between mt-4">
+        <button onclick="prevPage(3)" class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600">قبلی</button>
+        <button onclick="nextPage(3)" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">بعدی</button>
+      </div>
+    </div>
+
+    <!-- صفحه 4: بیمه -->
+    <div id="page4" class="page hidden">
+      <label class="block text-gray-700 mb-2">تحت پوشش چه بیمه‌ای هستید؟</label>
+      <div class="searchable-select">
+        <div class="flex items-center border rounded">
+          <input type="text" id="insuranceSearch" class="w-full p-2 outline-none" placeholder="جستجو کنید...">
+          <i class="fas fa-search p-2 text-gray-500"></i>
+        </div>
+        <select id="insurance" class="w-full p-2 border rounded mt-2" required>
+          <option value="">انتخاب کنید</option>
+          <option value="پاسارگاد">پاسارگاد</option>
+          <option value="ایران">ایران</option>
+          <option value="البرز">البرز</option>
+          <option value="آسیا">آسیا</option>
+          <option value="دانا">دانا</option>
+          <option value="معلم">معلم</option>
+          <option value="پارسیان">پارسیان</option>
+          <option value="کارآفرین">کارآفرین</option>
+          <option value="سامان">سامان</option>
+          <option value="سینا">سینا</option>
+          <option value="دی">دی</option>
+          <option value="ملت">ملت</option>
+          <option value="نوین">نوین</option>
+          <option value="رازی">رازی</option>
+          <option value="میهن">میهن</option>
+          <option value="ما">ما</option>
+          <option value="سرمد">سرمد</option>
+          <option value="تجارت نو">تجارت نو</option>
+          <option value="آرمان">آرمان</option>
+          <option value="تعاون">تعاون</option>
+          <option value="حکمت صبا">حکمت صبا</option>
+          <option value="کوثر">کوثر</option>
+        </select>
+      </div>
+      <div class="flex justify-between mt-4">
+        <button onclick="prevPage(4)" class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600">قبلی</button>
+        <button onclick="nextPage(4)" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">بعدی</button>
+      </div>
+    </div>
+
+    <!-- صفحه 5: مدت بیمه و رضایت -->
+    <div id="page5" class="page hidden">
+      <label class="block text-gray-700 mb-2">چند سال تحت پوشش بیمه هستید؟</label>
+      <input type="number" id="insuranceYears" class="w-full p-2 border rounded" min="0" required>
+      <label class="block text-gray-700 mb-2 mt-4">سطح رضایت شما (1 تا 5)</label>
+      <select id="satisfaction" class="w-full p-2 border rounded" required>
+        <option value="">انتخاب کنید</option>
+        <option value="1">1 - بسیار ناراضی</option>
+        <option value="2">2 - ناراضی</option>
+        <option value="3">3 - متوسط</option>
+        <option value="4">4 - راضی</option>
+        <option value="5">5 - بسیار راضی</option>
+      </select>
+      <div class="flex justify-between mt-4">
+        <button onclick="prevPage(5)" class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600">قبلی</button>
+        <button onclick="submitForm()" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">ارسال</button>
+      </div>
+    </div>
+
+    <!-- صفحه نتیجه -->
+    <div id="result" class="page hidden">
+      <p class="text-green-600 text-center">اطلاعات شما با موفقیت ثبت شد!</p>
+    </div>
+  </div>
+
+  <script>
+    let currentPage = 1;
+    const formData = {};
+
+    function showPage(page) {
+      document.querySelectorAll('.page').forEach(p => p.classList.add('hidden'));
+      document.getElementById(`page${page}`).classList.remove('hidden');
+    }
+
+    function nextPage(page) {
+      const input = document.getElementById(page === 1 ? 'fullName' : page === 2 ? 'phone' : page === 3 ? 'province' : page === 4 ? 'insurance' : 'insuranceYears');
+      if (!input.value) {
+        alert('لطفاً این فیلد را پر کنید.');
+        return;
+      }
+      if (page === 2 && !/^[0-9]{11}$/.test(input.value)) {
+        alert('شماره تلفن باید 11 رقم باشد.');
+        return;
+      }
+      formData[page === 1 ? 'fullName' : page === 2 ? 'phone' : page === 3 ? 'province' : page === 4 ? 'insurance' : 'insuranceYears'] = input.value;
+      if (page === 5) formData['satisfaction'] = document.getElementById('satisfaction').value;
+      currentPage = page + 1;
+      showPage(currentPage);
+    }
+
+    function prevPage(page) {
+      currentPage = page - 1;
+      showPage(currentPage);
+    }
+
+    function submitForm() {
+      if (!document.getElementById('insuranceYears').value || !document.getElementById('satisfaction').value) {
+        alert('لطفاً تمام فیلدها را پر کنید.');
+        return;
+      }
+      formData['insuranceYears'] = document.getElementById('insuranceYears').value;
+      formData['satisfaction'] = document.getElementById('satisfaction').value;
+
+      if (formData.province === 'خراسان رضوی' && formData.insurance === 'پاسارگاد') {
+        let savedData = JSON.parse(localStorage.getItem('users') || '[]');
+        savedData.push(formData);
+        localStorage.setItem('users', JSON.stringify(savedData));
+      }
+
+      showPage(6);
+    }
+
+    // جستجوی بیمه
+    document.getElementById('insuranceSearch').addEventListener('input', function(e) {
+      const searchTerm = e.target.value.toLowerCase();
+      const select = document.getElementById('insurance');
+      const options = select.querySelectorAll('option');
+      options.forEach(option => {
+        if (option.value && !option.value.toLowerCase().includes(searchTerm)) {
+          option.style.display = 'none';
+        } else {
+          option.style.display = 'block';
+        }
+      });
+    });
+
+    showPage(1);
+  </script>
+</body>
+</html>
